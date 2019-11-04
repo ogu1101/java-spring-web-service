@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 /**
  * Simple class to start up the application.
  *
- * @SpringBootApplication adds:
+ * @SpringBootApplication
  * @Configuration
  * @EnableAutoConfiguration
  * @ComponentScan
@@ -17,11 +17,18 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 public class Application extends SpringBootServletInitializer {
 
   @Override
-  protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+  protected final SpringApplicationBuilder configure(
+      final SpringApplicationBuilder application) {
     return application.sources(Application.class);
   }
 
-  public static void main(String[] args) {
+  /**
+   * mainメソッド.
+   *
+   * @param args
+   *          引数
+   */
+  public static void main(final String[] args) {
     SpringApplication.run(Application.class, args);
   }
 }
