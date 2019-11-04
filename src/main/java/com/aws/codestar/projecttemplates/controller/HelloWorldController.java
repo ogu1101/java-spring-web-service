@@ -14,19 +14,45 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class HelloWorldController {
 
-    private static final String MESSAGE_FORMAT = "Hello %s!";
+  /** Outputのフォーマット. */
+  private static final String MESSAGE_FORMAT = "Hello %s!";
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public ResponseEntity helloWorldGet(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return ResponseEntity.ok(createResponse(name));
-    }
+  /**
+   * helloWorldのGetメソッド.
+   *
+   * @param name
+   *          名前
+   * @return responseEntity
+   */
+  @RequestMapping(method = RequestMethod.GET, produces = "application/json")
+  public ResponseEntity<String> helloWorldGet(
+      @RequestParam(value = "name", defaultValue = "World") final String name) {
+    return ResponseEntity.ok(createResponse(name));
+  }
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity helloWorldPost(@RequestParam(value = "name", defaultValue = "World") String name) {
-        return ResponseEntity.ok(createResponse(name));
-    }
+  /**
+   * helloWorldのPOSTメソッド.
+   *
+   * @param name
+   *          名前
+   * @return responseEntity
+   */
+  @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+  public ResponseEntity<String> helloWorldPost(
+      @RequestParam(value = "name", defaultValue = "World") final String name) {
+    return ResponseEntity.ok(createResponse(name));
+  }
 
-    private String createResponse(String name) {
-        return new JSONObject().put("Output", String.format(MESSAGE_FORMAT, name)).toString();
-    }
+  /**
+   * responseを作成する.
+   *
+   * @param name
+   *          名前
+   * @return response
+   */
+  private String createResponse(final String name) {
+    return new JSONObject()
+        .put("Output", String.format(MESSAGE_FORMAT, name))
+        .toString();
+  }
 }

@@ -18,6 +18,23 @@
         <junit.jupiter.version>5.2.0</junit.jupiter.version>
     </properties>
 
+    <profiles>
+        <!-- 開発環境用プロファイル -->
+        <profile>
+            <id>development</id>
+            <properties>
+                <profile.resources.directory>src/main/env/development</profile.resources.directory>
+            </properties>
+        </profile>
+        <!-- 本番環境用プロファイル -->
+        <profile>
+            <id>production</id>
+            <properties>
+                <profile.resources.directory>src/main/env/production</profile.resources.directory>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -31,13 +48,11 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -91,5 +106,49 @@
             </plugins>
         </pluginManagement>
         <finalName>ROOT</finalName>
+
+        <!-- 下のresource要素から上に向かって順番に読み込まれる -->
+        <!-- 共通resourceをprofile別resourceより先に読み込む -->
+        <resources>
+            <resource>
+                <directory>${profile.resources.directory}</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
+
+    <!-- 以下のコマンドでCIレポートを生成 -->
+    <!-- mvn surefire-report:report checkstyle:checkstyle findbugs:findbugs -->
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.22.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.0</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                          <report>checkstyle</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.5</version>
+                <configuration>
+                    <xmlOutput>true</xmlOutput>
+                    <excludeFilterFile>findbugs-exclude.xml</excludeFilterFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
