@@ -18,6 +18,23 @@
         <junit.jupiter.version>5.2.0</junit.jupiter.version>
     </properties>
 
+    <profiles>
+        <!-- 開発環境用プロファイル -->
+        <profile>
+            <id>development</id>
+            <properties>
+                <profile.resources.directory>src/main/env/development</profile.resources.directory>
+            </properties>
+        </profile>
+        <!-- 本番環境用プロファイル -->
+        <profile>
+            <id>production</id>
+            <properties>
+                <profile.resources.directory>src/main/env/production</profile.resources.directory>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,7 +66,6 @@
             <artifactId>junit-platform-runner</artifactId>
             <version>${junit.platform.version}</version>
             <scope>test</scope>
-
         </dependency>
     </dependencies>
 
@@ -90,7 +106,19 @@
             </plugins>
         </pluginManagement>
         <finalName>ROOT</finalName>
+
+        <!-- 下のresource要素から上に向かって順番に読み込まれる -->
+        <!-- 共通resourceをprofile別resourceより先に読み込む -->
+        <resources>
+            <resource>
+                <directory>${profile.resources.directory}</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
+
     <!-- 以下のコマンドでCIレポートを生成 -->
     <!-- mvn surefire-report:report checkstyle:checkstyle findbugs:findbugs -->
     <reporting>
