@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class HelloWorldController {
 
-  /** Outputのフォーマット. */
+  /** response.Outputのフォーマット. */
   private static final String MESSAGE_FORMAT = "Hello %s!";
 
   /**
