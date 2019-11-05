@@ -19,14 +19,14 @@
     </properties>
 
     <profiles>
-        <!-- 開発環境用プロファイル -->
+        <!-- 開発環境用profile -->
         <profile>
             <id>development</id>
             <properties>
                 <profile.resources.directory>src/main/env/development</profile.resources.directory>
             </properties>
         </profile>
-        <!-- 本番環境用プロファイル -->
+        <!-- 本番環境用profile -->
         <profile>
             <id>production</id>
             <properties>
@@ -108,7 +108,7 @@
         <finalName>ROOT</finalName>
 
         <!-- 下のresource要素から上に向かって順番に読み込まれる -->
-        <!-- 共通resourceをprofile別resourceより先に読み込む -->
+        <!-- 共通resourceをprofile別resourceよりも先に読み込む -->
         <resources>
             <resource>
                 <directory>${profile.resources.directory}</directory>
