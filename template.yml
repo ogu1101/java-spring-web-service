@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform:
-- AWS::CodeStar
+  - AWS::CodeStar
 
 Conditions:
   UseSubnet: !Not [!Equals [!Ref 'SubnetId', subnet-none]]
@@ -55,15 +55,15 @@ Resources:
       ApplicationName: !Ref 'EBApplication'
       Description: The name of the sample configuration template.
       OptionSettings:
-      - Namespace: aws:elasticbeanstalk:environment
-        OptionName: EnvironmentType
-        Value: SingleInstance
-      - Namespace: aws:elasticbeanstalk:environment
-        OptionName: ServiceRole
-        Value: !Ref 'EBTrustRole'
-      - Namespace: aws:elasticbeanstalk:healthreporting:system
-        OptionName: SystemType
-        Value: enhanced
+        - Namespace: aws:elasticbeanstalk:environment
+          OptionName: EnvironmentType
+          Value: SingleInstance
+        - Namespace: aws:elasticbeanstalk:environment
+          OptionName: ServiceRole
+          Value: !Ref 'EBTrustRole'
+        - Namespace: aws:elasticbeanstalk:healthreporting:system
+          OptionName: SystemType
+          Value: enhanced
       SolutionStackName: !Ref 'SolutionStackName'
   EBEnvironment:
     Description: The AWS Elastic Beanstalk deployment group where the application is deployed, which is made up of the Amazon EC2 Linux instances launched for this project.
@@ -75,21 +75,21 @@ Resources:
       TemplateName: !Ref 'EBConfigurationTemplate'
       VersionLabel: !Ref 'EBApplicationVersion'
       OptionSettings:
-      - Namespace: aws:autoscaling:launchconfiguration
-        OptionName: IamInstanceProfile
-        Value: !Ref 'EBInstanceProfile'
-      - Namespace: aws:autoscaling:launchconfiguration
-        OptionName: InstanceType
-        Value: !Ref 'InstanceType'
-      - Namespace: aws:autoscaling:launchconfiguration
-        OptionName: EC2KeyName
-        Value: !Ref 'KeyPairName'
-      - Namespace: aws:ec2:vpc
-        OptionName: VPCId
-        Value: !Ref 'VpcId'
-      - !If
-        - UseSubnet
-        - Namespace: 'aws:ec2:vpc'
-          OptionName: Subnets
-          Value: !Ref 'SubnetId'
-        - !Ref "AWS::NoValue"
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: IamInstanceProfile
+          Value: !Ref 'EBInstanceProfile'
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: InstanceType
+          Value: !Ref 'InstanceType'
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: EC2KeyName
+          Value: !Ref 'KeyPairName'
+        - Namespace: aws:ec2:vpc
+          OptionName: VPCId
+          Value: !Ref 'VpcId'
+        - !If
+          - UseSubnet
+          - Namespace: 'aws:ec2:vpc'
+            OptionName: Subnets
+            Value: !Ref 'SubnetId'
+          - !Ref "AWS::NoValue"
