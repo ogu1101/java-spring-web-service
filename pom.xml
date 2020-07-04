@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.aws.codestar.projecttemplates</groupId>
@@ -23,14 +24,21 @@
         <profile>
             <id>development</id>
             <properties>
-                <profile.resources.directory>src/main/env/development</profile.resources.directory>
+                <profile.resources.directory>
+                    src/env/development
+                </profile.resources.directory>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
         <!-- 本番環境用profile -->
         <profile>
             <id>production</id>
             <properties>
-                <profile.resources.directory>src/main/env/production</profile.resources.directory>
+                <profile.resources.directory>
+                    src/env/production
+                </profile.resources.directory>
             </properties>
         </profile>
     </profiles>
@@ -41,9 +49,16 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20180130</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -93,7 +108,9 @@
                     <dependencies>
                         <dependency>
                             <groupId>org.junit.platform</groupId>
-                            <artifactId>junit-platform-surefire-provider</artifactId>
+                            <artifactId>
+                                junit-platform-surefire-provider
+                            </artifactId>
                             <version>${junit.platform.version}</version>
                         </dependency>
                         <dependency>
@@ -135,7 +152,7 @@
                 <reportSets>
                     <reportSet>
                         <reports>
-                          <report>checkstyle</report>
+                            <report>checkstyle</report>
                         </reports>
                     </reportSet>
                 </reportSets>
