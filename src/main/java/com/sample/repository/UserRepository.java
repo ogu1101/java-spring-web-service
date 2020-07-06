@@ -1,6 +1,6 @@
-package com.aws.codestar.projecttemplates.repository;
+package com.sample.repository;
 
-import com.aws.codestar.projecttemplates.entity.User;
+import com.sample.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

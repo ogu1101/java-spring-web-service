@@ -1,4 +1,4 @@
-package com.aws.codestar.projecttemplates.entity;
+package com.sample.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
