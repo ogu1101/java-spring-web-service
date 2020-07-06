@@ -1,7 +1,7 @@
-package com.aws.codestar.projecttemplates.service;
+package com.sample.service;
 
-import com.aws.codestar.projecttemplates.entity.User;
-import com.aws.codestar.projecttemplates.repository.UserRepository;
+import com.sample.entity.User;
+import com.sample.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +26,7 @@ public class UserService {
      *
      * @param ur UserRepositoryオブジェクト
      */
-    public UserService(UserRepository ur) {
+    public UserService(final UserRepository ur) {
         this.userRepository = ur;
     }
 

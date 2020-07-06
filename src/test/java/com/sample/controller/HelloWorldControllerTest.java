@@ -1,4 +1,4 @@
-package com.aws.codestar.projecttemplates.controller;
+package com.sample.controller;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;

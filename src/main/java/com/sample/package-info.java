@@ -1,4 +1,4 @@
 /**
  * プロジェクトルートpackage.
  */
-package com.aws.codestar.projecttemplates;
+package com.sample;
