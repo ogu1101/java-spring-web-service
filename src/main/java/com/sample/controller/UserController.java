@@ -26,7 +26,6 @@ import java.util.Optional;
 @RestController
 @RequestMapping("user")
 public class UserController {
-    // TODO エラー発生時にエラー内容を応答しないように修正
     /**
      * Loggerオブジェクト.
      */
