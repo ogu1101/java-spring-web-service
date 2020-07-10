@@ -24,6 +24,7 @@ import java.util.Optional;
  * UserのControllerクラス.
  */
 @RestController
+
 @RequestMapping("user")
 public class UserController {
     /**
@@ -62,15 +63,9 @@ public class UserController {
     public User postUser(
             @RequestBody @Validated final User user)
             throws JsonProcessingException {
-        String methodName =
-                Thread.currentThread().getStackTrace()[1].getMethodName();
-        String request = objectMapper.writeValueAsString(user);
-        startLog(methodName, request);
-
+        startLog(null, user);
         User savedUser = userService.saveUser(user);
-
-        String response = objectMapper.writeValueAsString(savedUser);
-        endLog(methodName, response);
+        endLog(savedUser);
         return savedUser;
     }
 
@@ -87,18 +82,11 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Optional<User> getUser(@PathVariable("id") final int id)
             throws JsonProcessingException {
-        String methodName =
-                Thread.currentThread().getStackTrace()[1].getMethodName();
-        Map<String, Integer> queryStrMap = new HashMap<>();
-        queryStrMap.put("id", id);
-        String request = objectMapper.writeValueAsString(queryStrMap);
-        startLog(methodName, request);
-
+        Map<String, String> pathParams = new HashMap<>();
+        pathParams.put("id", String.valueOf(id));
+        startLog(pathParams, null);
         Optional<User> foundUser = userService.findUser(id);
-
-        String response =
-                objectMapper.writeValueAsString(foundUser.orElse(null));
-        endLog(methodName, response);
+        endLog(foundUser.orElse(null));
         return foundUser;
     }
 
@@ -111,14 +99,9 @@ public class UserController {
     @RequestMapping(method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getUsers() throws JsonProcessingException {
-        String methodName =
-                Thread.currentThread().getStackTrace()[1].getMethodName();
-        startLog(methodName, null);
-
+        startLog(null, null);
         List<User> foundUsers = userService.findAllUsers();
-
-        String response = objectMapper.writeValueAsString(foundUsers);
-        endLog(methodName, response);
+        endLog(foundUsers);
         return foundUsers;
     }
 
@@ -137,16 +120,12 @@ public class UserController {
     User putUser(@PathVariable("id") final int id,
                  @RequestBody @Validated final User user)
             throws JsonProcessingException {
-        String methodName =
-                Thread.currentThread().getStackTrace()[1].getMethodName();
+        Map<String, String> pathParams = new HashMap<>();
+        pathParams.put("id", String.valueOf(id));
+        startLog(pathParams, user);
         user.setId(id);
-        String request = objectMapper.writeValueAsString(user);
-        startLog(methodName, request);
-
         User updatedUser = userService.updateUser(user);
-
-        String response = objectMapper.writeValueAsString(updatedUser);
-        endLog(methodName, response);
+        endLog(updatedUser);
         return updatedUser;
     }
 
@@ -162,35 +141,44 @@ public class UserController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     void deleteUser(@PathVariable("id") final int id)
             throws JsonProcessingException {
-        String methodName =
-                Thread.currentThread().getStackTrace()[1].getMethodName();
-        Map<String, Integer> queryStrMap = new HashMap<>();
-        queryStrMap.put("id", id);
-        String request = objectMapper.writeValueAsString(queryStrMap);
-        startLog(methodName, request);
-
+        Map<String, String> pathParams = new HashMap<>();
+        pathParams.put("id", String.valueOf(id));
+        startLog(pathParams, null);
         userService.deleteUser(id);
-
-        endLog(methodName, null);
+        endLog(null);
     }
 
     /**
      * スタートログを出力する.
      *
-     * @param methodName メソッド名
-     * @param request    リクエスト情報
+     * @param pathParams  パスパラメーター
+     * @param requestBody リクエストボディ
+     * @throws JsonProcessingException JSON文字列への変換時に発生する例外
      */
-    private void startLog(final String methodName, final String request) {
-        LOGGER.info(methodName + " was started. request:" + request);
+    private void startLog(final Map<String, String> pathParams,
+                          final Object requestBody)
+            throws JsonProcessingException {
+        final String methodName =
+                Thread.currentThread().getStackTrace()[2].getMethodName();
+        LOGGER.info(methodName + " was started.");
+        String pathParamsStr = objectMapper.writeValueAsString(pathParams);
+        LOGGER.info("pathParams:" + pathParamsStr);
+        String requestBodyStr = objectMapper.writeValueAsString(requestBody);
+        LOGGER.info("requestBody:" + requestBodyStr);
     }
 
     /**
      * エンドログを出力する.
      *
-     * @param methodName メソッド名
-     * @param response   レスポンス情報
+     * @param responseBody レスポンスボディ
+     * @throws JsonProcessingException JSON文字列への変換時に発生する例外
      */
-    private void endLog(final String methodName, final String response) {
-        LOGGER.info(methodName + " was completed. response:" + response);
+    private void endLog(final Object responseBody)
+            throws JsonProcessingException {
+        final String methodName =
+                Thread.currentThread().getStackTrace()[2].getMethodName();
+        String responseBodyStr = objectMapper.writeValueAsString(responseBody);
+        LOGGER.info("responseBody:" + responseBodyStr);
+        LOGGER.info(methodName + " was completed.");
     }
 }
