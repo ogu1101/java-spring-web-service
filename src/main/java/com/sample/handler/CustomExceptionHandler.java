@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 /**
  * 独自のExceptionHandlerクラス.
  * <p>
- * WARNING:例外ごとのhandleメソッドをOverrideしない場合はAPIレスポンスのHTTPボディが空になる。
+ * WARNING: 例外ごとのhandleメソッドをOverrideしない場合はAPIレスポンスのHTTPボディが空になる。
  */
 @RestControllerAdvice
 public final class CustomExceptionHandler
@@ -27,7 +27,7 @@ public final class CustomExceptionHandler
             final HttpStatus status,
             final WebRequest request) {
         Logger logger = LoggerFactory.getLogger(CustomExceptionHandler.class);
-        // 例外が発生した場合は必ずエラーログを出力する。
+        // 例外が発生した場合はエラーログを必ず出力する。
         logger.error("An exception occurred.", ex);
         return super.handleExceptionInternal(
                 ex, body, headers, status, request);
