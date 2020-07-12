@@ -6,7 +6,7 @@
     <artifactId>java-rest</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>Sample Java Spring web service Using AWS CodeStar</name>
+    <name>Sample Java Spring web service</name>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
