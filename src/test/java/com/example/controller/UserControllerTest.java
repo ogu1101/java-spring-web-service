@@ -95,7 +95,7 @@ public class UserControllerTest {
                 .content(requestBody))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is("application/json")))
+                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
                 .andExpect(MockMvcResultMatchers.content().json(expected));
     }
 
@@ -142,7 +142,7 @@ public class UserControllerTest {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/user/2"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is("application/json")))
+                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
                 .andExpect(MockMvcResultMatchers.content().json(expected));
     }
 
@@ -180,7 +180,7 @@ public class UserControllerTest {
         this.mockMvc.perform(MockMvcRequestBuilders.get("/user"))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is("application/json")))
+                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
                 .andExpect(MockMvcResultMatchers.content().json(expected));
     }
 
@@ -209,7 +209,7 @@ public class UserControllerTest {
                 .content(requestBody))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is("application/json")))
+                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
                 .andExpect(MockMvcResultMatchers.content().json(expected));
     }
 
