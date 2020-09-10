@@ -1,4 +1,0 @@
-/**
- * プロジェクトルートpackage.
- */
-package com.sample;
