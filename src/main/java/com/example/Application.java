@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 
 /**
- * Simple class to start up the application.
+ * アプリケーションを起動するためのシンプルなクラス.
  *
  * @SpringBootApplication
  * @Configuration
