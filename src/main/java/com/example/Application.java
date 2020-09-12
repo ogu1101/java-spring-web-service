@@ -9,11 +9,6 @@ import org.springframework.context.annotation.Bean;
 
 /**
  * アプリケーションを起動するためのシンプルなクラス.
- *
- * @SpringBootApplication
- * @Configuration
- * @EnableAutoConfiguration
- * @ComponentScan
  */
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
