@@ -1,7 +1,7 @@
 サンプルWebサービス
 ==============================================
 
-このアプリケーションは、RDBへCRUDを行うシンプルなWebサービスのサンプルです。
+このアプリケーションは、RDBにCRUDを行うシンプルなWebサービスのサンプルです。
 
 このアプリケーションを実装するために使用しているプログラム言語とフレームワークは、以下のとおりです。
 
@@ -25,9 +25,9 @@ What's Here
 | .ebextensions/ | このディレクトリには、AWS Elastic Beanstalkがアプリケーションをデプロイするための設定ファイルが含まれています。 |
 | buildspec.yml | このファイルは、アプリケーションをビルドするためにAWS CodeBuildで使用されます。 |
 | template.yml | このファイルには、AWS CloudFormationがインフラストラクチャをデプロイするために使用するAWSリソースの説明が含まれています。 |
-| template-configuration.json | このファイルには、プレースホルダーを含むプロジェクトARNが含まれています。プレースホルダーは、AWSリソースへプロジェクトIDをタグ付けするために使用されます。 |
+| template-configuration.json | このファイルには、プレースホルダーを含むプロジェクトARNが含まれています。プレースホルダーは、AWSリソースにプロジェクトIDをタグ付けするために使用されます。 |
 
-このアプリケーションをAWSクラウド以外の環境へデプロイする場合、以下のディレクトリ／ファイルは、不要となります。
+このアプリケーションをAWSクラウド以外の環境にデプロイする場合、以下のディレクトリ／ファイルは、不要となります。
   
 - .ebextensions/
 - buildspec.yml
@@ -55,13 +55,13 @@ Getting Started
         $ mvn -f pom.xml compile
         $ mvn -f pom.xml package
 
-1. ビルド成果物であるROOT.warをTomcatのwebappディレクトリへコピーしてください。 
+1. ビルド成果物であるROOT.warをTomcatのwebappディレクトリにコピーしてください。 
 
         $ cp target/ROOT.war <tomcat webapp directory>
 
 1. Tomcatサーバーを再起動してください。
 
-1. Webブラウザーで http://127.0.0.1:8080/user へアクセスすると、アプリケーションの実行結果が表示されます。
+1. Webブラウザーで http://127.0.0.1:8080/user にアクセスすると、アプリケーションの実行結果が表示されます。
 
 What Do I Do Next?
 ------------------
