@@ -25,7 +25,7 @@ What's Here
 | .ebextensions/ | このディレクトリには、AWS Elastic Beanstalkがアプリケーションをデプロイするための設定ファイルが含まれています。 |
 | buildspec.yml | このファイルは、アプリケーションをビルドするためにAWS CodeBuildで使用されます。 |
 | template.yml | このファイルには、AWS CloudFormationがインフラストラクチャをデプロイするために使用するAWSリソースの説明が含まれています。 |
-| template-configuration.json | このファイルには、プレースホルダーを含むプロジェクトARNが含まれています。プレースホルダーは、リソースへプロジェクトIDをタグ付けするために使用されます。 |
+| template-configuration.json | このファイルには、プレースホルダーを含むプロジェクトARNが含まれています。プレースホルダーは、AWSリソースへプロジェクトIDをタグ付けするために使用されます。 |
 
 このアプリケーションをAWSクラウド以外の環境へデプロイする場合、以下のディレクトリ／ファイルは、不要となります。
   
@@ -48,7 +48,7 @@ Getting Started
 1. MySQLをインストールしてください。詳細は、 https://dev.mysql.com/doc/refman/8.0/en/installing.html を参照してください。
 
 1. application.propertiesの記載内容に合わせて、DBとDBユーザーを作成してください。
-   ※DBテーブルは、アプリケーションの起動時に自動作成されます。
+   DBテーブルは、アプリケーションの起動時に自動作成されます。
 
 1. アプリケーションをビルドしてください。
 
