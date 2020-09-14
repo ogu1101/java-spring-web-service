@@ -60,14 +60,14 @@ import static org.hamcrest.Matchers.nullValue;
 public class UserControllerTest {
 
     /**
+     * ObjectMapperオブジェクト.
+     */
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    /**
      * MockMvcオブジェクト.
      */
     @Autowired
     MockMvc mockMvc;
-    /**
-     * ObjectMapperオブジェクト.
-     */
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * {@link UserController#postUser}の正常系テスト.
