@@ -61,7 +61,13 @@ Getting Started
 
 1. Tomcatサーバーを再起動してください。
 
-1. Webブラウザーで http://127.0.0.1:8080/user にアクセスすると、アプリケーションの実行結果が表示されます。
+1. curlコマンドでアプリケーションにHTTPリクエストを送信すると、アプリケーションからHTTPレスポンスが返却されます。
+
+        $ curl -v -X POST -H 'Content-Type:application/json' -d '{"name":"Shuhei Ogura", "emailAddress":"shuhei.ogura@example.com"}' localhost:8080/user
+        $ curl -v -X GET -H 'Content-Type:application/json' localhost:8080/user/1
+        $ curl -v -X PUT -H 'Content-Type:application/json' -d '{"name":"Mari Ogura", "emailAddress":"mari.ogura@example.com", "cellPhoneNumber":"09002222222"}' localhost:8080/user/1
+        $ curl -v -X GET -H 'Content-Type:application/json' localhost:8080/user
+        $ curl -v -X DELETE -H 'Content-Type:application/json' localhost:8080/user/1
 
 What Do I Do Next?
 ------------------
