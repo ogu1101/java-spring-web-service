@@ -60,14 +60,14 @@ import static org.hamcrest.Matchers.nullValue;
 public class UserControllerTest {
 
     /**
+     * ObjectMapperオブジェクト.
+     */
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    /**
      * MockMvcオブジェクト.
      */
     @Autowired
     MockMvc mockMvc;
-    /**
-     * ObjectMapperオブジェクト.
-     */
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * {@link UserController#postUser}の正常系テスト.
@@ -75,7 +75,7 @@ public class UserControllerTest {
     @Test
     @DisplayName("POSTリクエストの正常系テスト")
     // NOTE: DBテーブルのauto_incrementを初期化するためにTRUNCATEを実行する。
-    // WARNING: POSTリクエストをテストする場合、DBテーブルのauto_incrementを初期化しないと、auto_incrementするDBカラムの値を正しく検証できない。
+    // WARNING: POSTリクエストをテストする場合はDBテーブルのauto_incrementを初期化しないとauto_incrementされるDBカラムの値を正しく検証できない。
     @Sql(statements = "TRUNCATE TABLE users")
     @DatabaseSetup(value = "/test-data/user-controller/test-post-user/")
     @ExpectedDatabase(
