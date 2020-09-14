@@ -77,9 +77,9 @@ public class UserControllerTest {
     // NOTE: DBテーブルのauto_incrementを初期化するためにTRUNCATEを実行する。
     // WARNING: POSTリクエストをテストする場合はDBテーブルのauto_incrementを初期化しないとauto_incrementされるDBカラムの値を正しく検証できない。
     @Sql(statements = "TRUNCATE TABLE users")
-    @DatabaseSetup(value = "/test-data/user-controller/test-post-user/")
+    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-post-user/test-data/")
     @ExpectedDatabase(
-            value = "/expected-data/user-controller/test-post-user/",
+            value = "/com/example/controller/user-controller-test/test-post-user/expected-data/",
             table = "users",
             assertionMode = DatabaseAssertionMode.NON_STRICT
     )
@@ -107,9 +107,9 @@ public class UserControllerTest {
     @Test
     @DisplayName("POSTリクエストの異常系テスト")
     @Sql(statements = "TRUNCATE TABLE users")
-    @DatabaseSetup(value = "/test-data/user-controller/test-post-user-abnormal/")
+    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-post-user-abnormal/test-data/")
     @ExpectedDatabase(
-            value = "/expected-data/user-controller/test-post-user-abnormal/",
+            value = "/com/example/controller/user-controller-test/test-post-user-abnormal/expected-data/",
             table = "users",
             assertionMode = DatabaseAssertionMode.NON_STRICT
     )
@@ -132,7 +132,7 @@ public class UserControllerTest {
      */
     @Test
     @DisplayName("GETリクエストの正常系テスト")
-    @DatabaseSetup(value = "/test-data/user-controller/test-get-user/")
+    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-get-user/test-data/")
     public void testGetUser() throws Exception {
         User user = new User();
         user.setId(2);
@@ -153,7 +153,7 @@ public class UserControllerTest {
      */
     @Test
     @DisplayName("GETリクエストの正常系テスト")
-    @DatabaseSetup(value = "/test-data/user-controller/test-get-user/")
+    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-get-users/test-data/")
     public void testGetUsers() throws Exception {
         User user1 = new User();
         user1.setId(1);
@@ -191,9 +191,9 @@ public class UserControllerTest {
      */
     @Test
     @DisplayName("PUTリクエストの正常系テスト")
-    @DatabaseSetup(value = "/test-data/user-controller/test-put-user/")
+    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-put-user/test-data/")
     @ExpectedDatabase(
-            value = "/expected-data/user-controller/test-put-user/",
+            value = "/com/example/controller/user-controller-test/test-put-user/expected-data/",
             table = "users",
             assertionMode = DatabaseAssertionMode.NON_STRICT
     )
@@ -220,9 +220,9 @@ public class UserControllerTest {
      */
     @Test
     @DisplayName("DELETEリクエストの正常系テスト")
-    @DatabaseSetup(value = "/test-data/user-controller/test-delete-user/")
+    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-delete-user/test-data/")
     @ExpectedDatabase(
-            value = "/expected-data/user-controller/test-delete-user/",
+            value = "/com/example/controller/user-controller-test/test-delete-user/expected-data/",
             table = "users",
             assertionMode = DatabaseAssertionMode.NON_STRICT
     )
