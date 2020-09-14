@@ -80,4 +80,4 @@ What Do I Do Next?
 
 新しいコードをテストするには、既存のテストクラスを変更するか、src/testディレクトリ配下にテストクラスを追加します。 
 
-CI用レポートを出力するには、サンプルコードのルートディレクトリに移動して、 `mvn surefire-report:report checkstyle:checkstyle` コマンドを実行します。
+CI用レポートを出力するには、サンプルコードのルートディレクトリに移動して、 `mvn clean surefire-report:report checkstyle:checkstyle` コマンドを実行します。
