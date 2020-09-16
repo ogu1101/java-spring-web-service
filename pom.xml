@@ -179,8 +179,8 @@
                     <configLocation>google_checks.xml</configLocation>
                 </configuration>
             </plugin>
-            <!-- 2020年9月時点でSpotBugsはJava11未対応 -->
-            <!-- SpotBugsがJava11に対応した場合は以下のコマンドでCIレポートを生成 -->
+            <!-- 2020年9月時点でSpotBugsは、Java11未対応 -->
+            <!-- SpotBugsがJava11に対応した場合は、以下のコマンドでCIレポートを生成 -->
             <!-- mvn surefire-report:report checkstyle:checkstyle spotbugs:spotbugs -->
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
