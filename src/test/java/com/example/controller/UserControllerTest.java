@@ -75,7 +75,7 @@ public class UserControllerTest {
     @Test
     @DisplayName("POSTリクエストの正常系テスト")
     // NOTE: DBテーブルのauto_incrementを初期化するためにTRUNCATEを実行する。
-    // WARNING: POSTリクエストをテストする場合はDBテーブルのauto_incrementを初期化しないとauto_incrementされるDBカラムの値を正しく検証できない。
+    // WARNING: POSTリクエストをテストする場合は、DBテーブルのauto_incrementを初期化しないと、auto_incrementされるDBカラムの値を正しく検証できない。
     @Sql(statements = "TRUNCATE TABLE users")
     @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-post-user/test-data/")
     @ExpectedDatabase(
