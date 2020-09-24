@@ -22,9 +22,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +29,14 @@ import java.util.List;
 import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 // TODO: 条件分岐を網羅するようにテストケースを作成する。
 // TODO: 閾値を網羅するようにテストケースを作成する。
@@ -92,13 +97,13 @@ public class UserControllerTest {
         user.setId(1);
         String expected = objectMapper.writeValueAsString(user);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        this.mockMvc.perform(post("/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
-                .andExpect(MockMvcResultMatchers.content().json(expected));
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
+                .andExpect(content().json(expected));
     }
 
     /**
@@ -118,13 +123,13 @@ public class UserControllerTest {
         user.setCellPhoneNumber("abcdeABCDE");
         String requestBody = objectMapper.writeValueAsString(user);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/user")
+        this.mockMvc.perform(post("/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isBadRequest())
-                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is(nullValue())))
-                .andExpect(MockMvcResultMatchers.content().string(is(emptyString())));
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(header().string("Content-Type", is(nullValue())))
+                .andExpect(content().string(is(emptyString())));
     }
 
     /**
@@ -141,11 +146,11 @@ public class UserControllerTest {
         user.setCellPhoneNumber("09002222222");
         String expected = objectMapper.writeValueAsString(user);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/user/2"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
-                .andExpect(MockMvcResultMatchers.content().json(expected));
+        this.mockMvc.perform(get("/user/2"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
+                .andExpect(content().json(expected));
     }
 
     /**
@@ -179,11 +184,11 @@ public class UserControllerTest {
         userList.add(user3);
         String expected = objectMapper.writeValueAsString(userList);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/user"))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
-                .andExpect(MockMvcResultMatchers.content().json(expected));
+        this.mockMvc.perform(get("/user"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
+                .andExpect(content().json(expected));
     }
 
     /**
@@ -206,13 +211,13 @@ public class UserControllerTest {
         user.setId(1);
         String expected = objectMapper.writeValueAsString(user);
 
-        this.mockMvc.perform(MockMvcRequestBuilders.put("/user/1")
+        this.mockMvc.perform(put("/user/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestBody))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
-                .andExpect(MockMvcResultMatchers.content().json(expected));
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
+                .andExpect(content().json(expected));
     }
 
     /**
@@ -227,11 +232,11 @@ public class UserControllerTest {
             assertionMode = DatabaseAssertionMode.NON_STRICT
     )
     public void testDeleteUser() throws Exception {
-        this.mockMvc.perform(MockMvcRequestBuilders.delete("/user/1")
+        this.mockMvc.perform(delete("/user/1")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.header().string("Content-Type", is(nullValue())))
-                .andExpect(MockMvcResultMatchers.content().string(is(emptyString())));
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(header().string("Content-Type", is(nullValue())))
+                .andExpect(content().string(is(emptyString())));
     }
 }
