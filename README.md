@@ -20,19 +20,10 @@ What's Here
 | src/main | このディレクトリには、アプリケーションのソースファイルが含まれています。 |
 | src/test | このディレクトリには、アプリケーションのUTファイルが含まれています。 |
 | pom.xml | このファイルは、アプリケーションのMavenプロジェクトオブジェクトモデルです。 |
+| Dockerfile | このファイルは、Dockerイメージをビルドするために使用されます。 |
+| docker-compose.yml | このファイルは、複数のDockerコンテナを定義し、実行するために使用されます。 |
 | .gitignore | このファイルは、Gitの追跡対象から除外したいファイルを設定するために使用されます。 |
 | spotbugs-exclude.xml | このファイルは、特定のクラスやメソッドをSpotBugsのバグレポートから除外するために使用されます。 |
-| .ebextensions/ | このディレクトリには、AWS Elastic Beanstalkがアプリケーションをデプロイするための設定ファイルが含まれています。 |
-| buildspec.yml | このファイルは、アプリケーションをビルドするためにAWS CodeBuildで使用されます。 |
-| template.yml | このファイルには、AWS CloudFormationがインフラストラクチャをデプロイするために使用するAWSリソースの説明が含まれています。 |
-| template-configuration.json | このファイルには、プレースホルダーを含むプロジェクトARNが含まれています。プレースホルダーは、AWSリソースにプロジェクトIDをタグ付けするために使用されます。 |
-
-このアプリケーションをAWSクラウド以外の環境にデプロイする場合、以下のディレクトリ／ファイルは、不要となります。
-  
-- .ebextensions/
-- buildspec.yml
-- template.yml
-- template-configuration.json
 
 Getting Started
 ---------------
@@ -43,31 +34,28 @@ Getting Started
 
 1. Mavenをインストールしてください。詳細は、 https://maven.apache.org/install.html を参照してください。
 
-1. Tomcatをインストールしてください。詳細は、 https://tomcat.apache.org/tomcat-9.0-doc/setup.html を参照してください。
-
-1. MySQLをインストールしてください。詳細は、 https://dev.mysql.com/doc/refman/8.0/en/installing.html を参照してください。
-
-1. application.propertiesの記載内容に合わせて、DBとDBユーザーを作成してください。
-   DBテーブルは、アプリケーションの起動時に自動作成されます。
+1. Dockerをインストールしてください。詳細は、 http://docs.docker.jp/engine/installation/ を参照してください。
 
 1. アプリケーションをビルドしてください。
 
-        $ mvn -f pom.xml compile
-        $ mvn -f pom.xml package
+        $ mvn -f pom.xml -P production compile
+        $ mvn -f pom.xml -P production package -DskipTests=true
 
-1. ビルド成果物であるROOT.warをTomcatのwebappディレクトリにコピーしてください。 
+1. DBコンテナを起動してください。 
 
-        $ cp target/ROOT.war <tomcat webapp directory>
+        $ docker-compose up -d --build example_db
 
-1. Tomcatサーバーを再起動してください。
+1. RDBMSの起動完了後にアプリケーションコンテナを起動してください。
+
+        $ docker-compose up -d --build example_app
 
 1. curlコマンドでアプリケーションにHTTPリクエストを送信すると、アプリケーションからHTTPレスポンスが返却されます。
 
-        $ curl -v -X POST -H 'Content-Type:application/json' -d '{"name":"Shuhei Ogura", "emailAddress":"shuhei.ogura@example.com"}' localhost:8080/user
-        $ curl -v -X GET -H 'Content-Type:application/json' localhost:8080/user/1
-        $ curl -v -X PUT -H 'Content-Type:application/json' -d '{"name":"Mari Ogura", "emailAddress":"mari.ogura@example.com", "cellPhoneNumber":"09002222222"}' localhost:8080/user/1
-        $ curl -v -X GET -H 'Content-Type:application/json' localhost:8080/user
-        $ curl -v -X DELETE -H 'Content-Type:application/json' localhost:8080/user/1
+        $ curl -v -X POST -H 'Content-Type:application/json' -d '{"name":"Shuhei Ogura", "emailAddress":"shuhei.ogura@example.com"}' 127.0.0.1:8080/user
+        $ curl -v -X GET -H 'Content-Type:application/json' 127.0.0.1:8080/user/1
+        $ curl -v -X PUT -H 'Content-Type:application/json' -d '{"name":"Mari Ogura", "emailAddress":"mari.ogura@example.com", "cellPhoneNumber":"09002222222"}' 127.0.0.1:8080/user/1
+        $ curl -v -X GET -H 'Content-Type:application/json' 127.0.0.1:8080/user
+        $ curl -v -X DELETE -H 'Content-Type:application/json' 127.0.0.1:8080/user/1
 
 What Do I Do Next?
 ------------------
