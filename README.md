@@ -64,8 +64,8 @@ What Do I Do Next?
 
 サンプルコード内の"user"を任意のEntityに置き換えてください。
 
-テストをローカルPCで実行するには、サンプルコードのルートディレクトリに移動して、DBコンテナが起動している状態で `mvn clean compile test` コマンドを実行します。
+テストをローカルPCで実行するには、サンプルコードのルートディレクトリに移動して、DBが稼働している状態で `mvn clean compile test` コマンドを実行します。
 
 新しいコードをテストするには、既存のテストクラスを変更するか、src/testディレクトリ配下にテストクラスを追加します。 
 
-CI用レポートを出力するには、サンプルコードのルートディレクトリに移動して、DBコンテナが起動している状態で `mvn clean surefire-report:report checkstyle:checkstyle` コマンドを実行します。
+CI用レポートを出力するには、サンプルコードのルートディレクトリに移動して、DBが稼働している状態で `mvn clean surefire-report:report checkstyle:checkstyle` コマンドを実行します。
