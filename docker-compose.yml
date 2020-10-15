@@ -8,6 +8,8 @@ services:
       MYSQL_DATABASE: example_db
       MYSQL_USER: example_db_user
       MYSQL_PASSWORD: example_db_user_password
+    ports:
+      - "3306:3306"
     networks:
       - example_network
 
@@ -15,7 +17,7 @@ services:
     build:
       context: ./
     ports:
-      - 8080:8080
+      - "8080:8080"
     networks:
       - example_network
 
