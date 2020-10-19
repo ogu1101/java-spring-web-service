@@ -1,4 +1,4 @@
 /**
- * filterを配置するpackage.
+ * Filterクラスを配置するパッケージ.
  */
 package com.example.filter;

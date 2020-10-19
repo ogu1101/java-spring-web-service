@@ -4,7 +4,7 @@ import com.example.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
- * UserのRepositoryクラス.
+ * UserのRepositoryインターフェース.
  */
 public interface UserRepository extends JpaRepository<User, Integer> {
 }
