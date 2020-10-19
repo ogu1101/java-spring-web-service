@@ -1,4 +1,4 @@
 /**
- * serviceを配置するpackage.
+ * Serviceクラスを配置するパッケージ.
  */
 package com.example.service;

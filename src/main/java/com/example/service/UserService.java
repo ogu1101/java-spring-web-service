@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Userのserviceクラス.
+ * UserのServiceクラス.
  */
 @Service
 @Transactional

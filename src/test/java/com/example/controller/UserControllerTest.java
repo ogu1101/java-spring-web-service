@@ -80,9 +80,15 @@ public class UserControllerTest {
     @Test
     @DisplayName("POSTリクエストの正常系テスト")
     // NOTE: DBテーブルのAUTO_INCREMENTを初期化するためにTRUNCATEを実行する。
-    // WARNING: POSTリクエストをテストする場合は、DBテーブルのAUTO_INCREMENTを初期化しないと、AUTO_INCREMENTされるDBカラムの値を正しく検証できない。
+    /*
+        WARNING:
+            POSTリクエストをテストする場合は、
+            DBテーブルのAUTO_INCREMENTを初期化しないと、
+            AUTO_INCREMENTされるDBカラムの値を正しく検証できない。
+     */
     @Sql(statements = "TRUNCATE TABLE users")
-    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-post-user/test-data/")
+    @DatabaseSetup(
+            value = "/com/example/controller/user-controller-test/test-post-user/test-data/")
     @ExpectedDatabase(
             value = "/com/example/controller/user-controller-test/test-post-user/expected-data/",
             table = "users",
@@ -102,7 +108,9 @@ public class UserControllerTest {
                 .content(requestBody))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
+                .andExpect(header().string(
+                        "Content-Type",
+                        is(MediaType.APPLICATION_JSON_VALUE)))
                 .andExpect(content().json(expected));
     }
 
@@ -112,7 +120,8 @@ public class UserControllerTest {
     @Test
     @DisplayName("POSTリクエストの異常系テスト")
     @Sql(statements = "TRUNCATE TABLE users")
-    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-post-user-abnormal/test-data/")
+    @DatabaseSetup(
+            value = "/com/example/controller/user-controller-test/test-post-user-abnormal/test-data/")
     @ExpectedDatabase(
             value = "/com/example/controller/user-controller-test/test-post-user-abnormal/expected-data/",
             table = "users",
@@ -128,7 +137,9 @@ public class UserControllerTest {
                 .content(requestBody))
                 .andDo(print())
                 .andExpect(status().isBadRequest())
-                .andExpect(header().string("Content-Type", is(nullValue())))
+                .andExpect(header().string(
+                        "Content-Type",
+                        is(nullValue())))
                 .andExpect(content().string(is(emptyString())));
     }
 
@@ -137,7 +148,8 @@ public class UserControllerTest {
      */
     @Test
     @DisplayName("GETリクエストの正常系テスト")
-    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-get-user/test-data/")
+    @DatabaseSetup(
+            value = "/com/example/controller/user-controller-test/test-get-user/test-data/")
     public void testGetUser() throws Exception {
         User user = new User();
         user.setId(2);
@@ -149,7 +161,9 @@ public class UserControllerTest {
         this.mockMvc.perform(get("/user/2"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
+                .andExpect(header().string(
+                        "Content-Type",
+                        is(MediaType.APPLICATION_JSON_VALUE)))
                 .andExpect(content().json(expected));
     }
 
@@ -158,7 +172,8 @@ public class UserControllerTest {
      */
     @Test
     @DisplayName("GETリクエストの正常系テスト")
-    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-get-users/test-data/")
+    @DatabaseSetup(
+            value = "/com/example/controller/user-controller-test/test-get-users/test-data/")
     public void testGetUsers() throws Exception {
         User user1 = new User();
         user1.setId(1);
@@ -187,7 +202,9 @@ public class UserControllerTest {
         this.mockMvc.perform(get("/user"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
+                .andExpect(header().string(
+                        "Content-Type",
+                        is(MediaType.APPLICATION_JSON_VALUE)))
                 .andExpect(content().json(expected));
     }
 
@@ -196,7 +213,8 @@ public class UserControllerTest {
      */
     @Test
     @DisplayName("PUTリクエストの正常系テスト")
-    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-put-user/test-data/")
+    @DatabaseSetup(
+            value = "/com/example/controller/user-controller-test/test-put-user/test-data/")
     @ExpectedDatabase(
             value = "/com/example/controller/user-controller-test/test-put-user/expected-data/",
             table = "users",
@@ -216,7 +234,9 @@ public class UserControllerTest {
                 .content(requestBody))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(header().string("Content-Type", is(MediaType.APPLICATION_JSON_VALUE)))
+                .andExpect(header().string(
+                        "Content-Type",
+                        is(MediaType.APPLICATION_JSON_VALUE)))
                 .andExpect(content().json(expected));
     }
 
@@ -225,7 +245,8 @@ public class UserControllerTest {
      */
     @Test
     @DisplayName("DELETEリクエストの正常系テスト")
-    @DatabaseSetup(value = "/com/example/controller/user-controller-test/test-delete-user/test-data/")
+    @DatabaseSetup(
+            value = "/com/example/controller/user-controller-test/test-delete-user/test-data/")
     @ExpectedDatabase(
             value = "/com/example/controller/user-controller-test/test-delete-user/expected-data/",
             table = "users",
@@ -236,7 +257,9 @@ public class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(header().string("Content-Type", is(nullValue())))
+                .andExpect(header().string(
+                        "Content-Type",
+                        is(nullValue())))
                 .andExpect(content().string(is(emptyString())));
     }
 }

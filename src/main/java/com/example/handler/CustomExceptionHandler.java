@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 /**
  * 独自のExceptionHandlerクラス.
  * <p>
- * WARNING: 例外別のhandleメソッドをOverrideしない場合は、APIレスポンスのHTTPボディが空になる。
+ * WARNING: 例外別のhandleメソッドをオーバーライドしない場合は、APIレスポンスのHTTPボディが空になる。
  */
 @RestControllerAdvice
 public final class CustomExceptionHandler
