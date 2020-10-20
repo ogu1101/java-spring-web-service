@@ -24,7 +24,6 @@ import java.util.Optional;
  * UserのControllerクラス.
  */
 @RestController
-
 @RequestMapping("user")
 public class UserController {
     /**
@@ -58,10 +57,10 @@ public class UserController {
      * @return DBに登録したユーザー情報
      * @throws JsonProcessingException JSON文字列への変換時に発生する例外
      */
-    @RequestMapping(method = RequestMethod.POST,
+    @RequestMapping(
+            method = RequestMethod.POST,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public User postUser(
-            @RequestBody @Validated final User user)
+    public User postUser(@RequestBody @Validated final User user)
             throws JsonProcessingException {
         startLog(null, user);
         User savedUser = userService.saveUser(user);
@@ -96,7 +95,8 @@ public class UserController {
      * @return DBから取得したすべてのユーザー情報
      * @throws JsonProcessingException JSON文字列への変換時に発生する例外
      */
-    @RequestMapping(method = RequestMethod.GET,
+    @RequestMapping(
+            method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getUsers() throws JsonProcessingException {
         startLog(null, null);
