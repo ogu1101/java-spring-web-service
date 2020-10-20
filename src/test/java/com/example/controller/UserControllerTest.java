@@ -94,8 +94,7 @@ public class UserControllerTest {
             value = "/com/example/controller/user-controller-test"
                     + "/test-post-user/expected-data/",
             table = "users",
-            assertionMode = DatabaseAssertionMode.NON_STRICT
-    )
+            assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void testPostUser() throws Exception {
         User user = new User();
         user.setName("Shuhei Ogura");
@@ -129,8 +128,7 @@ public class UserControllerTest {
             value = "/com/example/controller/user-controller-test"
                     + "/test-post-user-abnormal/expected-data/",
             table = "users",
-            assertionMode = DatabaseAssertionMode.NON_STRICT
-    )
+            assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void testPostUserAbnormal() throws Exception {
         User user = new User();
         user.setCellPhoneNumber("abcdeABCDE");
@@ -226,8 +224,7 @@ public class UserControllerTest {
             value = "/com/example/controller/user-controller-test"
                     + "/test-put-user/expected-data/",
             table = "users",
-            assertionMode = DatabaseAssertionMode.NON_STRICT
-    )
+            assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void testPutUser() throws Exception {
         User user = new User();
         user.setName("Mari Ogura");
@@ -260,8 +257,7 @@ public class UserControllerTest {
             value = "/com/example/controller/user-controller-test"
                     + "/test-delete-user/expected-data/",
             table = "users",
-            assertionMode = DatabaseAssertionMode.NON_STRICT
-    )
+            assertionMode = DatabaseAssertionMode.NON_STRICT)
     public void testDeleteUser() throws Exception {
         this.mockMvc.perform(delete("/user/1")
                 .contentType(MediaType.APPLICATION_JSON))
