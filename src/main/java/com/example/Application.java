@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Bean;
  */
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
-
     /**
      * mainメソッド.
      *

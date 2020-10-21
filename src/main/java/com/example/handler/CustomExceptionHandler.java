@@ -20,7 +20,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RestControllerAdvice
 public final class CustomExceptionHandler
         extends ResponseEntityExceptionHandler {
-
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(
             final Exception ex,
