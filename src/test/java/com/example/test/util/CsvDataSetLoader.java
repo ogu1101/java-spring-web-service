@@ -11,7 +11,6 @@ import org.springframework.core.io.Resource;
  * CSVファイルからデータセットを読み込むクラス.
  */
 public class CsvDataSetLoader extends AbstractDataSetLoader {
-
     @Override
     protected IDataSet createDataSet(Resource resource) throws Exception {
         return new CsvURLDataSet(resource.getURL());
