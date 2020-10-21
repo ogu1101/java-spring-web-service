@@ -26,7 +26,6 @@ public class CustomFilter implements Filter {
                                final ServletResponse servletResponse,
                                final FilterChain filterChain)
             throws IOException, ServletException {
-
         try {
             MDC.put("requestID", UUID.randomUUID().toString());
             filterChain.doFilter(servletRequest, servletResponse);
