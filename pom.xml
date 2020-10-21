@@ -18,7 +18,6 @@
         <junit.platform.version>1.6.2</junit.platform.version>
         <junit.jupiter.version>5.6.2</junit.jupiter.version>
     </properties>
-
     <profiles>
         <!-- 開発環境用profile -->
         <profile>
@@ -42,7 +41,6 @@
             </properties>
         </profile>
     </profiles>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -109,7 +107,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -142,7 +139,6 @@
             </plugins>
         </pluginManagement>
         <finalName>ROOT</finalName>
-
         <!-- 下のresource要素から上に向かって順番に読み込まれる -->
         <!-- 共通resourceをprofile別resourceよりも先に読み込む -->
         <resources>
@@ -154,7 +150,6 @@
             </resource>
         </resources>
     </build>
-
     <!-- 以下のコマンドでCIレポートを生成 -->
     <!-- mvn surefire-report:report checkstyle:checkstyle -->
     <reporting>
