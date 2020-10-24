@@ -7,7 +7,7 @@
 
 | プログラム言語 | フレームワーク |
 | :--- | :--- |
-| Java 11 | Spring boot 2 |
+| Java 11 | Spring Boot 2 |
 
 What's Here
 -----------
