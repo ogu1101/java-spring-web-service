@@ -30,7 +30,7 @@ public class Application extends SpringBootServletInitializer {
     /**
      * CustomFilterを設定する.
      *
-     * @return CustomFilterオブジェクト.
+     * @return CustomFilterオブジェクト
      */
     @Bean
     CustomFilter setCustomFilter() {
