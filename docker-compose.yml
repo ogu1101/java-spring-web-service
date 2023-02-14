@@ -18,6 +18,8 @@ services:
       - "8080:8080"
     networks:
       - example_network
+    depends_on:
+      - example_db
 networks:
   example_network:
     driver: bridge

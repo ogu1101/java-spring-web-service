@@ -31,26 +31,19 @@ Getting Started
 
 以下の手順は、ローカルPCで開発することを想定したものです。 
 
-このサンプルコードに対して作業を行うには、このリポジトリをローカルPCにcloneする必要があります。 
-
-1. Mavenをインストールしてください。詳細は、 https://maven.apache.org/install.html を参照してください。
+このサンプルコードに対して作業を行うには、このリポジトリをローカルPCにcloneする必要があります。
 
 1. Dockerをインストールしてください。詳細は、 http://docs.docker.jp/engine/installation/ を参照してください。
 
-1. アプリケーションをビルドしてください。
-
-        $ mvn -f pom.xml -P production compile
-        $ mvn -f pom.xml -P production package -DskipTests=true
-
-1. DBコンテナを起動してください。 
+2. DBコンテナを起動してください。 
 
         $ docker-compose up -d --build example_db
 
-1. RDBMSの起動完了後にアプリケーションコンテナを起動してください。
+3. RDBMSの起動完了後にアプリケーションコンテナを起動してください。
 
         $ docker-compose up -d --build example_app
 
-1. curlコマンドでアプリケーションにHTTPリクエストを送信すると、アプリケーションからHTTPレスポンスが返却されます。
+4. curlコマンドでアプリケーションにHTTPリクエストを送信すると、アプリケーションからHTTPレスポンスが返却されます。
 
         $ curl -v -X POST -H 'Content-Type:application/json' -d '{"name":"Shuhei Ogura", "emailAddress":"shuhei.ogura@example.com"}' 127.0.0.1:8080/user
         $ curl -v -X GET -H 'Content-Type:application/json' 127.0.0.1:8080/user/1
